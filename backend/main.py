@@ -10,8 +10,6 @@ import logging
 # Load environment variables from a .env file
 load_dotenv()
 
-
-
 class Context_engine:
     def __init__(self):
         self.marengo_key = os.getenv("twelve_API")
@@ -30,7 +28,6 @@ class Context_engine:
 
 
     def call_pegasus(self, vid_id, query):
-        
         client = TwelveLabs(api_key=self.marengo_key)
         # Replace with a valid video_id or index that supports the generate operation
         text_steam = client.analyze(video_id=vid_id, prompt=query, temperature=0.1, response_format={"type": "json_schema", "json_schema": {
@@ -57,8 +54,6 @@ class Context_engine:
             "required": ["timestamps"]
         }})
         self.logger.info(f"Received timestamps and descriptions: {text_steam.data}")
-
-        self.logger.info(f"Received text chunk: {text_steam.data}")
 
         return text_steam.data
 
