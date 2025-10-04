@@ -1,5 +1,13 @@
 import os
 from dotenv import load_dotenv
+import pandas as pd
+
+from twelvelabs import TwelveLabs
+from twelvelabs.types import VideoSegment
+from twelvelabs.embed import TasksStatusResponse
+
+from twelvelabs.indexes import IndexesCreateRequestModelsItem
+from twelvelabs.tasks import TasksRetrieveResponse
 
 # Load environment variables from a .env file
 load_dotenv()
@@ -15,5 +23,7 @@ class Context_engine:
 
     def get_api_key(self):
         return self.api_key
+
+
 
     
