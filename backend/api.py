@@ -97,19 +97,19 @@ async def upload_video(file: UploadFile = File(None), video_id: str = ""):
         result = process_video(file)
         return {"result": result}
 
-    elif main_video_id:
+    elif video_id:
         
             prompt = "chapterize the video for emotion timeline and time stamp it based on the video"
             logging.basicConfig(level=logging.INFO)
             logger = logging.getLogger(__name__)
 
             logger.info("Calling Pegasus for emotion analysis.")
-            emotion = context_engine.call_pegasus(main_video_id, prompt)
+            emotion = context_engine.call_pegasus(video_id, prompt)
             logger.info(f"Emotion analysis result: {emotion}")
 
             prompt = "What are the key frame timestamps of the video?"
             logger.info("Calling Pegasus for key frame timestamps.")
-            emotion_objects = context_engine.call_pegasus(main_video_id, prompt)
+            emotion_objects = context_engine.call_pegasus(video_id, prompt)
             logger.info(f"Key frame timestamps result: {emotion_objects}")
 
             logger.info("Calling Gemini for ads category analysis.")
@@ -121,7 +121,7 @@ async def upload_video(file: UploadFile = File(None), video_id: str = ""):
             logger.info(f"Emotion CSV: {emotion_csv}, Emotion graph location: {gemini_emotion_graph_loc}")
 
             logger.info("Running multi-video analysis for persona matching.")
-            run_multi_video_analysis.persona_main(main_video_id, ads_id)
+            run_multi_video_analysis.persona_main(video_id, ads_id)
 
             logger.info("Initializing EmbeddingSimilarityAnalyzer.")
             analyzer = EmbeddingSimilarityAnalyzer()
