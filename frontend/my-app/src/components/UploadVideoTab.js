@@ -86,39 +86,23 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
     };
 
     const getVideoAnalysis = async (videoid) => {
-        const url = 'https://api.twelvelabs.io/v1.3/analyze';
+        const url = 'http://127.0.0.1:8000/ad_placement';
         const options = {
             method: 'POST',
-            headers: {
-                'x-api-key': process.env.NEXT_PUBLIC_TWELVE_LABS_API_KEY || 'your-api-key-here',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                video_id: videoid,
-                prompt: "Analyze this video and provide timestamps for key events, scenes, or segments. Break down the video by main events with their start and end times in seconds.",
-                response_format: {
-                    type: "json_schema",
-                    json_schema: {
-                        type: "object",
-                        properties: {
-                            segments: { type: "array", items: { type: "object", properties: { start_time: { type: "number" }, end_time: { type: "number" }, description: { type: "string" } } } }
-                        }
-                    }
-                },
-                temperature: 0.2,
-                stream: false,
-                max_tokens: 2000,
-            })
+            params: {
+                video_id: videoid
+            }
         };
 
         try {
-            return {
-                segments: [
-                    { start_time: 0, end_time: 3, description: "hits a goal" },
-                    { start_time: 3, end_time: 4, description: "goal celebration" },
-                    { start_time: 4, end_time: 8, description: "celebration" }
-                ]
-            };
+            // return {
+            //     segments: [
+            //         { start_time: 0, end_time: 3, description: "hits a goal" },
+            //         { start_time: 3, end_time: 4, description: "goal celebration" },
+            //         { start_time: 4, end_time: 8, description: "celebration" }
+            //     ]
+            // };
+            console.log(options);
             const response = await fetch(url, options);
             const data = await response.json();
             console.log(data);
@@ -130,6 +114,12 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
             
         }
     };
+
+    // dummmy data segments: [
+        // { start_time: 0, end_time: 3, description: "hits a goal" },
+       // { start_time: 3, end_time: 4, description: "goal celebration" },
+       // { start_time: 4, end_time: 8, description: "celebration" }
+    //]
 
     const onDrop = useCallback(async (acceptedFiles) => {
         const file = acceptedFiles[0];
@@ -498,7 +488,8 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
 
     // API function to create stitched video
     const createStitchedVideo = async (segmentsData) => {
-        const url = '/api/create-stitched-video'; // Update this to your actual API endpoint
+        console.log('Sending segments data to API:', segmentsData);
+        const url = 'http://127.0.0.1:8000/create-stitched-video'; // Backend API endpoint for stitching
         const options = {
             method: 'POST',
             headers: {
@@ -508,8 +499,15 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
         };
 
         try {
+            console.log('Making API request to:', url);
+            console.log('Request options:', options);
+            
             const response = await fetch(url, options);
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+            
             const data = await response.json();
+            console.log('Response data:', data);
             
             if (!response.ok) {
                 throw new Error(data.message || `HTTP error! status: ${response.status}`);
@@ -518,6 +516,12 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
             return data;
         } catch (error) {
             console.error('Stitched video creation failed:', error);
+            console.error('Error details:', {
+                message: error.message,
+                stack: error.stack,
+                url: url,
+                options: options
+            });
             throw error;
         }
     };
