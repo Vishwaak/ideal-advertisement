@@ -71,10 +71,6 @@ class StitchingResponse(BaseModel):
 
 @app.post("/ad_placement", response_model=OutputData)
 async def upload_video(file: UploadFile = File(None), video_id: str = ""):
-    with open("dummy.json", "r") as f:
-        data = json.load(f)
-        
-    return data
     """
     Endpoint for video analysis and ad placement
     Can accept either a file upload or a video_id for analysis
@@ -103,7 +99,10 @@ async def upload_video(file: UploadFile = File(None), video_id: str = ""):
         return {"result": result}
 
     elif video_id:
-        
+            with open("dummy.json", 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            return {"result": data}
+
             prompt = "chapterize the video for emotion timeline and time stamp it based on the video"
             logging.basicConfig(level=logging.INFO)
             logger = logging.getLogger(__name__)
