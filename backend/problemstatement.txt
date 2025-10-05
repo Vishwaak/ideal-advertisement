@@ -1,0 +1,66 @@
+The Moment Matcher
+1 - Overview
+The holy grail of advertising is perfect contextual alignment – showing the right ad at exactly the right moment in content. But today's contextual advertising is embarrassingly primitive, relying on webpage keywords instead of understanding what's actually happening in video content. With 80% of digital content being video, we're essentially flying blind. Time to change that.
+2 - Challenge Description
+Build an intelligent contextual advertising system that can identify perfect ad placement opportunities within video content. Your system should understand not just what's happening, but the emotional context, narrative flow, and audience engagement patterns that make certain moments ideal for specific types of advertising.
+Consider the complexity: A travel ad might work during a beautiful landscape scene but not during a stressful airport security sequence in the same travel video. A food ad could be perfect when someone mentions being hungry but terrible during a diet conversation. Your system needs to understand these subtle contextual cues and match them with appropriate advertising categories.
+3 - Sample Videos
+3.1 - Vlogs with Strong Narrative and Emotional Arcs
+Vlogs are perfect for this challenge because they blend everyday activities with personal storytelling, creating frequent and natural shifts in mood and topic.
+Video: "The ups and downs of LIFE IN YOUR 30s an emotional rollercoaster" by Chelsea Callahan
+Why it's a challenge: This 24-minute vlog is a goldmine of contextual moments. The vlogger discusses serious topics like her cat's newly diagnosed heart disease (moment of anxiety, unsuitable for most ads) , her decision to go back to school (moment of excitement and ambition, suitable for educational or productivity brands) , and her search for a Beyoncé concert outfit (moment of fun and fashion, ideal for a clothing or entertainment brand). The system must differentiate these moments and match them with appropriate ad categories.
+Video: A long-form travel vlog (e.g., a "day in the life" video from a creator in a foreign city).
+Why it's a challenge: A travel vlog contains many distinct "moments." A beautiful shot of a landmark is a great time for a travel booking site ad. A segment where the vlogger is struggling with a foreign language could be an opportunity for a language-learning app. A scene where they are enjoying a local meal is perfect for a food delivery service. The challenge is to identify these micro-moments within the broader "travel" theme.
+Video: "an oversharing vlog... lots of emotional realizations" by a lifestyle vlogger
+Why it's a challenge: These vlogs often feature raw, emotional discussions about personal growth and mental health. A moment of vulnerability and tears is highly unsuitable for a cheerful, upbeat ad. However, a moment of triumph or positive realization could be a perfect fit for an ad from a wellness or therapy app. The system needs to track the emotional flow of the conversation.
+3.2 - Podcasts and Interviews
+Audio-driven content like podcasts forces the system to rely on conversational cues—tone of voice, topic changes, and specific phrases—to find the right ad moments.
+Video: The Joe Rogan Experience or similar long-form interview podcast (Lex Fridman Prodcast).
+Why it's a challenge: A three-hour conversation can cover dozens of topics. A segment discussing fitness and nutrition is ideal for a supplement brand. A moment later, a discussion about space exploration could be a great fit for a tech company or a sci-fi movie. A system must be able to parse these topic shifts in real-time to serve relevant ads.
+Video: Good Mythical Morning with Rhett & Link.
+Why it's a challenge: Episodes often involve taste tests or trying new products. A moment where they express hunger or excitement before eating is a prime spot for a food ad. A moment of disgust after trying something strange is obviously not. The system must understand the positive vs. negative framing of the food experience.
+Video: A business or marketing podcast like "Success with long form video content".
+Why it's a challenge: This content is educational and targeted at professionals. Moments where the host discusses a specific problem (e.g., "why they're not actually seeing conversions") are perfect opportunities for a B2B SaaS company to advertise a solution. The system should identify these "problem" statements as ideal contextual triggers.
+3.3 - Documentaries
+Documentaries offer a clear narrative structure and are rich with thematic moments that can be aligned with brand messaging.
+Video: Living on One Dollar
+Why it's a challenge: This documentary follows four friends living in poverty in rural Guatemala. While the overall theme is serious, there are moments of hope, community, and innovation. An ad for a flashy consumer good would be tone-deaf. However, an ad for a non-profit, a socially conscious investment firm, or an educational platform could be highly effective if placed in a moment of positive resolution.
+Video: The White Helmets
+Why it's a challenge: This film depicts the harrowing work of rescue workers in Syria. It is an extreme example of brand-unsafe content for most advertisers. The challenge here is for the system to correctly identify the entire film as a "no-go" zone for advertising, demonstrating an understanding of "sacred" content that should not be monetized with pre-roll or mid-roll ads.
+Video: Our Planet or a similar nature documentary.
+Why it's a challenge: These films have stunning visuals. A sweeping shot of an untouched landscape is a perfect moment for an eco-friendly travel company or an outdoor gear brand. A segment discussing the threat of climate change, however, would require a different type of advertiser, such as a sustainability-focused brand or an environmental organization.
+3.4 - Tutorials and How-To Videos
+Tutorials have a clear, step-by-step narrative flow, creating predictable moments for relevant ad placements.
+Video: A complex recipe video (e.g., "how to make croissants from scratch").
+Why it's a challenge: The video will have distinct phases. A moment when the chef lists the ingredients is perfect for a grocery delivery service ad. A segment showing a specific piece of equipment (like a stand mixer) is an opportunity for a kitchenware brand. The system must recognize these different stages of the tutorial.
+Video: A DIY home improvement video (e.g., "how to build a bookshelf").
+Why it's a challenge: The creator will mention specific tools and materials at different points. A moment discussing the need for a power drill is a perfect trigger for an ad from a hardware company. A segment on staining the wood could trigger an ad for a paint or wood finish brand.
+Video: A software tutorial (e.g., "getting started with Photoshop").
+Why it's a challenge: The user is in a learning mindset. A moment where the instructor mentions the difficulty of a certain task is an ideal time to advertise a plugin or template that simplifies that exact task. This requires the system to understand not just the topic, but the user's potential pain points.
+4 - Evaluation Criteria
+Contextual Precision (40%): How accurately does the system identify optimal ad placement moments?
+Engagement Prediction (25%): Can it predict which placements will drive higher engagement?
+Brand-Content Alignment (20%): How well does it match brand personality with content mood?
+Revenue Optimization (15%): Does this demonstrably improve monetization for publishers?
+ 5 - Submission Requirements
+Live contextual analysis showing optimal ad insertion points
+Engagement prediction model with confidence intervals
+Brand-content matching algorithm with reasoning explanations
+Revenue impact projection based on historical data
+Publisher-friendly dashboard for ad inventory optimization
+
+General Submission Guidelines
+Technical Requirements:
+All solutions must leverage TwelveLabs' video understanding APIs
+Include integration with at least one additional AI service (ideally from our sponsors)
+Provide working code repository with clear documentation
+Demonstrate enterprise-level scalability considerations
+Presentation Format:
+3-minute demo focusing on business impact
+2-minute technical deep-dive on AI implementation
+2-minute live Q&A with judges
+Judging Timeline:
+Sunday 1:00 PM: Final submissions due
+Sunday 1:30-4:00 PM: Team presentations
+Sunday 4:30 PM: Winner announcements
+Remember: You're not building for other developers – you're building for CMOs, agency heads, and marketing technology leaders who need solutions they can deploy Monday morning. Focus on business impact, user experience, and real-world applicability over technical complexity.
