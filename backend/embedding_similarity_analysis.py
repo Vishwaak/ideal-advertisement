@@ -7,7 +7,7 @@ import json
 from typing import Dict, Any
 
 class EmbeddingSimilarityAnalyzer:
-    def __init__(self, results_file: str = "comprehensive_video_analysis_results.json"):
+    def __init__(self, results_file: str = "json/comprehensive_video_analysis_results.json"):
         """Initialize with existing analysis results"""
         self.results_file = results_file
         self.results = self._load_results()

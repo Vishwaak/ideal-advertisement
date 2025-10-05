@@ -6,6 +6,9 @@ from twelvelabs import TwelveLabs
 from twelvelabs.indexes import IndexesCreateRequestModelsItem
 from twelvelabs.tasks import TasksRetrieveResponse
 
+
+from persona_analyzer import *
+
 import matplotlib.pyplot as plt
 
 import requests
@@ -31,6 +34,8 @@ class Context_engine:
 
         self.gemini_client = genai.Client(api_key=os.getenv("gemini_API"))
         self.logger.info("Gemini client initialized.")
+
+        self.persona_analyzer = PersonaAnalyzer()
 
         # Initialize other components as needed
 

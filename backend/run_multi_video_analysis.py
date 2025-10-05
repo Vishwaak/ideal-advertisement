@@ -9,7 +9,7 @@ import json
 import os
 from dotenv import load_dotenv
 
-def main():
+def persona_main(main_video_id,ads_id=[]):
     """Run analysis on all videos"""
     
     # Load environment variables
@@ -22,10 +22,10 @@ def main():
     analyzer = PersonaAnalyzer()
     
     # Get video IDs from environment
-    main_sports_video_id = os.getenv("main_sports_video_id")
-    ad_volkswagen_video_id = os.getenv("ad_volkswagen_video_id")
-    ad_pg_video_id = os.getenv("ad_pg_video_id")
-    ad_coco_cola_3_video_id = os.getenv("ad_coco_cola_3_video_id")
+    main_sports_video_id = main_video_id
+    ad_volkswagen_video_id = ads_id[1]
+    ad_pg_video_id = ads_id[0]
+    ad_coco_cola_3_video_id = ads_id[2]
     
     # Define video information
     videos = {
@@ -111,7 +111,7 @@ def main():
     comprehensive_results["analysis_metadata"]["analysis_timestamp"] = datetime.now().isoformat()
     
     # Save comprehensive results
-    output_file = "comprehensive_video_analysis_results.json"
+    output_file = "json/comprehensive_video_analysis_results.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(comprehensive_results, f, indent=2, ensure_ascii=False)
     
@@ -221,5 +221,5 @@ def main():
     print(f"\nUpdated results with persona affinity metrics saved to: {output_file}")
     print("\nHACKATHON READY! All analyses complete with persona affinity metrics.")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
