@@ -43,6 +43,15 @@ async def upload_video(file: UploadFile = File(None), video_id: str = ""):
     else:
         return {"result": "No file or video_id provided. Either provide one of them"}
 
+@app.post("/get_file_ad", response_model=OutputData)
+async def get_file_ad(file: UploadFile = File(...)):
+    def process_ad(file: UploadFile) -> List[dict]:
+        print(UploadFile)
+        ad_id = context_engine.upload_ad(file.file)
+        return {"ad_id": ad_id}
+
+    result = process_ad(file)
+    return {"result": result}
 
 @app.get("/")
 async def root():

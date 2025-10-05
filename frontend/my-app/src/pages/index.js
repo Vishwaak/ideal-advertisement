@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import UploadVideoTab from "../components/UploadVideoTab";
 import AnalyzeTab from "../components/AnalyzeTab";
+import UploadAds from "../components/UploadAds";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,10 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("upload");
+  const [activeTab, setActiveTab] = useState("Ads");
+  const [uploadedAds, setUploadedAds] = useState([]);
 
   const tabs = [
-    { id: "upload", label: "Upload Video", icon: "📹" },
+    { id: "Ads", label: "Ads", icon: "🏠" },
+    { id: "Video", label: "Video", icon: "📹" },
     { id: "analyze", label: "Analyze", icon: "🔍" },
   ];
 
@@ -29,15 +32,10 @@ export default function Home() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">V</span>
+                <span className="text-white font-bold text-lg">IA</span>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">VideoAI</h1>
+              <h1 className="text-2xl font-bold text-gray-900">IdealAdvertisement</h1>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-600 hover:text-gray-900">Features</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">Pricing</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">About</a>
-            </nav>
           </div>
         </div>
       </header>
@@ -47,10 +45,10 @@ export default function Home() {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Transform Your Videos with AI
+            Transform Your Live Streams with AI
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Upload your videos and let our advanced AI analyze, enhance, and optimize them for maximum impact.
+            Upload your Ads and let our advanced AI analyze, enhance, and optimize them for maximum impact.
           </p>
         </div>
 
@@ -79,7 +77,8 @@ export default function Home() {
 
             {/* Tab Content */}
             <div className="p-8">
-              {activeTab === "upload" && <UploadVideoTab />}
+              {activeTab === "Ads" && <UploadAds onAdsUpdate={setUploadedAds} onSwitchTab={setActiveTab} />}
+              {activeTab === "Video" && <UploadVideoTab uploadedAds={uploadedAds} />}
               {activeTab === "analyze" && <AnalyzeTab />}
             </div>
           </div>
@@ -115,7 +114,7 @@ export default function Home() {
       <footer className="bg-white border-t mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
-            <p>&copy; 2024 VideoAI. All rights reserved.</p>
+            <p>&copy; 2025 VideoAI. All rights reserved.</p>
           </div>
         </div>
       </footer>
