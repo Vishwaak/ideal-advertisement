@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Integration Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background-color: #0056b3; }
+        button:disabled { background-color: #6c757d; cursor: not-allowed; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Frontend Integration Test</h1>
+    
+    <div class="test-section info">
+        <h3>Test getVideoAnalysis Function</h3>
+        <p>This test will call the getVideoAnalysis function with a test video ID to verify the integration with the backend.</p>
+        
+        <div>
+            <label for="videoId">Video ID:</label>
+            <input type="text" id="videoId" value="test_video_123" style="margin: 0 10px; padding: 5px;">
+            <button onclick="testGetVideoAnalysis()" id="testBtn">Test getVideoAnalysis</button>
+        </div>
+        
+        <div id="testResults" style="margin-top: 15px;"></div>
+    </div>
+    
+    <div class="test-section info">
+        <h3>Test Backend Connection</h3>
+        <p>Test if the backend is accessible and responding correctly.</p>
+        <button onclick="testBackendConnection()" id="backendBtn">Test Backend</button>
+        <div id="backendResults" style="margin-top: 15px;"></div>
+    </div>
+
+    <script>
+        // Copy the getVideoAnalysis function from UploadVideoTab.js
+        async function getVideoAnalysis(videoid) {
+            const url = `http://127.0.0.1:8000/ad_placement?video_id=${videoid}`;
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            try {
+                console.log('Making request to:', url);
+                console.log('Video ID:', videoid);
+                const response = await fetch(url, options);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Analysis response:', data);
+                return data;
+            } catch (error) {
+                console.error("Video analysis failed:", error);
+                throw error;
+            }
+        }
+
+        async function testGetVideoAnalysis() {
+            const videoId = document.getElementById('videoId').value;
+            const resultsDiv = document.getElementById('testResults');
+            const testBtn = document.getElementById('testBtn');
+            
+            testBtn.disabled = true;
+            testBtn.textContent = 'Testing...';
+            resultsDiv.innerHTML = '<p>🔄 Testing getVideoAnalysis function...</p>';
+            
+            try {
+                const result = await getVideoAnalysis(videoId);
+                
+                resultsDiv.innerHTML = `
+                    <div class="test-section success">
+                        <h4>✅ Test Successful!</h4>
+                        <p><strong>Video ID:</strong> ${videoId}</p>
+                        <p><strong>Response:</strong></p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="test-section error">
+                        <h4>❌ Test Failed</h4>
+                        <p><strong>Error:</strong> ${error.message}</p>
+                        <p><strong>Video ID:</strong> ${videoId}</p>
+                    </div>
+                `;
+            } finally {
+                testBtn.disabled = false;
+                testBtn.textContent = 'Test getVideoAnalysis';
+            }
+        }
+
+        async function testBackendConnection() {
+            const resultsDiv = document.getElementById('backendResults');
+            const backendBtn = document.getElementById('backendBtn');
+            
+            backendBtn.disabled = true;
+            backendBtn.textContent = 'Testing...';
+            resultsDiv.innerHTML = '<p>🔄 Testing backend connection...</p>';
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8000/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultsDiv.innerHTML = `
+                        <div class="test-section success">
+                            <h4>✅ Backend Connection Successful!</h4>
+                            <p><strong>Status:</strong> ${response.status}</p>
+                            <p><strong>Response:</strong></p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="test-section error">
+                        <h4>❌ Backend Connection Failed</h4>
+                        <p><strong>Error:</strong> ${error.message}</p>
+                        <p>Make sure the backend server is running on http://127.0.0.1:8000</p>
+                    </div>
+                `;
+            } finally {
+                backendBtn.disabled = false;
+                backendBtn.textContent = 'Test Backend';
+            }
+        }
+
+        // Auto-test backend connection on page load
+        window.addEventListener('load', () => {
+            testBackendConnection();
+        });
+    </script>
+</body>
+</html>

@@ -86,32 +86,29 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
     };
 
     const getVideoAnalysis = async (videoid) => {
-        const url = 'http://127.0.0.1:8000/ad_placement';
+        const url = `http://127.0.0.1:8000/ad_placement?video_id=${videoid}`;
         const options = {
             method: 'POST',
-            params: {
-                video_id: videoid
+            headers: {
+                'Content-Type': 'application/json'
             }
         };
 
         try {
-            // return {
-            //     segments: [
-            //         { start_time: 0, end_time: 3, description: "hits a goal" },
-            //         { start_time: 3, end_time: 4, description: "goal celebration" },
-            //         { start_time: 4, end_time: 8, description: "celebration" }
-            //     ]
-            // };
-            console.log(options);
+            console.log('Making request to:', url);
+            console.log('Video ID:', videoid);
             const response = await fetch(url, options);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
             const data = await response.json();
-            console.log(data);
+            console.log('Analysis response:', data);
             return data;
         } catch (error) {
-            // Return dummy segment data on error for development/testing
-            console.warn("Returning dummy segment data due to error:", error);
+            console.error("Video analysis failed:", error);
             throw error;
-            
         }
     };
 

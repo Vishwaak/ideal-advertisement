@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 import requests
 
-from google import genai
+# from google import genai
 
 import logging
 import json
@@ -20,7 +20,6 @@ import io
 # Load environment variables from a .env file
 load_dotenv()
 
-
 class Context_engine:
     def __init__(self):
         self.api_key = os.getenv("twelve_API")
@@ -29,7 +28,7 @@ class Context_engine:
         self.logging()
         self.logger.info("Context engine initialized.")
 
-        self.gemini_client = genai.Client(api_key=os.getenv("gemini_API"))
+        # self.gemini_client = genai.Client(api_key=os.getenv("gemini_API"))
         self.logger.info("Gemini client initialized.")
 
         # Initialize other components as needed
