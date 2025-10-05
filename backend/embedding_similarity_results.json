@@ -1,0 +1,220 @@
+{
+  "analysis_metadata": {
+    "method": "sports_contextual_similarity_analysis",
+    "content_relevance_weight": 0.5,
+    "audience_alignment_weight": 0.5,
+    "sports_context_method": "keyword_based_weighted_similarity",
+    "normalization": "both_metrics_0_to_1_range",
+    "sports_context_used": true
+  },
+  "sports_contextual_similarities": {
+    "Volkswagen Ad": {
+      "overall_similarity": 0.2375,
+      "context_scores": {
+        "refreshment": {
+          "similarity": 0.5,
+          "weight": 0.9,
+          "weighted_score": 0.45
+        },
+        "automotive": {
+          "similarity": 0.0,
+          "weight": 0.6,
+          "weighted_score": 0.0
+        },
+        "personal_care": {
+          "similarity": 0.0,
+          "weight": 0.3,
+          "weighted_score": 0.0
+        },
+        "sports_equipment": {
+          "similarity": 0.5,
+          "weight": 1.0,
+          "weighted_score": 0.5
+        }
+      }
+    },
+    "PG Ad": {
+      "overall_similarity": 0.3083,
+      "context_scores": {
+        "refreshment": {
+          "similarity": 1.0,
+          "weight": 0.9,
+          "weighted_score": 0.9
+        },
+        "automotive": {
+          "similarity": 0.0,
+          "weight": 0.6,
+          "weighted_score": 0.0
+        },
+        "personal_care": {
+          "similarity": 0.0,
+          "weight": 0.3,
+          "weighted_score": 0.0
+        },
+        "sports_equipment": {
+          "similarity": 0.3333,
+          "weight": 1.0,
+          "weighted_score": 0.3333
+        }
+      }
+    },
+    "Coca-Cola Ad 3": {
+      "overall_similarity": 0.225,
+      "context_scores": {
+        "refreshment": {
+          "similarity": 1.0,
+          "weight": 0.9,
+          "weighted_score": 0.9
+        },
+        "automotive": {
+          "similarity": 0.0,
+          "weight": 0.6,
+          "weighted_score": 0.0
+        },
+        "personal_care": {
+          "similarity": 0.0,
+          "weight": 0.3,
+          "weighted_score": 0.0
+        },
+        "sports_equipment": {
+          "similarity": 0.0,
+          "weight": 1.0,
+          "weighted_score": 0.0
+        }
+      }
+    }
+  },
+  "persona_affinity_scores": {
+    "Main Sports Video": 7.94,
+    "Volkswagen Ad": 7.03,
+    "PG Ad": 7.85,
+    "Coca-Cola Ad 3": 7.23
+  },
+  "comprehensive_scores": {
+    "Volkswagen Ad": {
+      "content_relevance": 0.2375,
+      "normalized_content_relevance": 0.1501,
+      "audience_alignment": 0.909,
+      "comprehensive_score": 0.5295,
+      "main_affinity": 7.94,
+      "ad_affinity": 7.03,
+      "normalized_main_affinity": 0.794,
+      "normalized_ad_affinity": 0.703,
+      "content_relevance_weight": 0.5,
+      "audience_alignment_weight": 0.5,
+      "normalized": true,
+      "sports_context_used": true,
+      "sports_context_scores": {
+        "refreshment": {
+          "similarity": 0.5,
+          "weight": 0.9,
+          "weighted_score": 0.45
+        },
+        "automotive": {
+          "similarity": 0.0,
+          "weight": 0.6,
+          "weighted_score": 0.0
+        },
+        "personal_care": {
+          "similarity": 0.0,
+          "weight": 0.3,
+          "weighted_score": 0.0
+        },
+        "sports_equipment": {
+          "similarity": 0.5,
+          "weight": 1.0,
+          "weighted_score": 0.5
+        }
+      }
+    },
+    "PG Ad": {
+      "content_relevance": 0.3083,
+      "normalized_content_relevance": 1.0,
+      "audience_alignment": 0.991,
+      "comprehensive_score": 0.9955,
+      "main_affinity": 7.94,
+      "ad_affinity": 7.85,
+      "normalized_main_affinity": 0.794,
+      "normalized_ad_affinity": 0.785,
+      "content_relevance_weight": 0.5,
+      "audience_alignment_weight": 0.5,
+      "normalized": true,
+      "sports_context_used": true,
+      "sports_context_scores": {
+        "refreshment": {
+          "similarity": 1.0,
+          "weight": 0.9,
+          "weighted_score": 0.9
+        },
+        "automotive": {
+          "similarity": 0.0,
+          "weight": 0.6,
+          "weighted_score": 0.0
+        },
+        "personal_care": {
+          "similarity": 0.0,
+          "weight": 0.3,
+          "weighted_score": 0.0
+        },
+        "sports_equipment": {
+          "similarity": 0.3333,
+          "weight": 1.0,
+          "weighted_score": 0.3333
+        }
+      }
+    },
+    "Coca-Cola Ad 3": {
+      "content_relevance": 0.225,
+      "normalized_content_relevance": 0.0,
+      "audience_alignment": 0.929,
+      "comprehensive_score": 0.4645,
+      "main_affinity": 7.94,
+      "ad_affinity": 7.23,
+      "normalized_main_affinity": 0.794,
+      "normalized_ad_affinity": 0.723,
+      "content_relevance_weight": 0.5,
+      "audience_alignment_weight": 0.5,
+      "normalized": true,
+      "sports_context_used": true,
+      "sports_context_scores": {
+        "refreshment": {
+          "similarity": 1.0,
+          "weight": 0.9,
+          "weighted_score": 0.9
+        },
+        "automotive": {
+          "similarity": 0.0,
+          "weight": 0.6,
+          "weighted_score": 0.0
+        },
+        "personal_care": {
+          "similarity": 0.0,
+          "weight": 0.3,
+          "weighted_score": 0.0
+        },
+        "sports_equipment": {
+          "similarity": 0.0,
+          "weight": 1.0,
+          "weighted_score": 0.0
+        }
+      }
+    }
+  },
+  "final_ranking": [
+    {
+      "rank": 1,
+      "ad": "PG Ad",
+      "score": 0.9955
+    },
+    {
+      "rank": 2,
+      "ad": "Volkswagen Ad",
+      "score": 0.5295
+    },
+    {
+      "rank": 3,
+      "ad": "Coca-Cola Ad 3",
+      "score": 0.4645
+    }
+  ]
+}
