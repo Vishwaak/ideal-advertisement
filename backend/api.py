@@ -275,3 +275,21 @@ async def test_stitching():
         "method": "POST",
         "status": "ready"
     }
+
+
+@app.post("/swayable", response_model=OutputData)
+async def swayableMetrics():
+    import pandas as pd
+    from sklearn.model_selection import train_test_split
+    from sklearn.linear_model import LinearRegression
+    from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+    data = pd.read_csv("Patagonia-PR Results.csv")
+    data['lift'] = (data['testGroupMean'] - data['baselineMean']) / data['baselineMean']
+
+    total_lift = data.lift.mean()
+    values = {}
+    for treatment, each_data in data.groupby("treatment"):
+        values[treatment] = each_data[each_data.metric == '1) Brand Lift']['lift'].mean() / total_lift
+
+    return values
