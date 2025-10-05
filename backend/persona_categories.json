@@ -1,0 +1,221 @@
+{
+  "personas": [
+    {
+      "category": "general",
+      "name": "The Enthusiastic Explorer",
+      "motto": "Always chasing the next exciting story.",
+      "summary": "A curious, upbeat viewer who seeks novelty, excitement, and creative storytelling. Responds strongly to visual dynamism, emotion, and freshness.",
+      "core_characteristics": {
+        "motivation": ["Novelty", "Inspiration", "Cultural relevance"],
+        "knowledge": "Moderate; driven by curiosity, not depth.",
+        "allegiance": "Fluid interests, shifts based on trends."
+      },
+      "viewing_context_behavior": {
+        "where_they_watch": ["Home", "Mobile devices", "While socializing"],
+        "how_they_watch": "Focuses on visually stimulating, emotional segments; skips slower parts.",
+        "content_consumption": "Short-form, creative, emotionally charged highlights or clips."
+      },
+      "engagement_style": {
+        "emotional_triggers": ["Excitement", "Humor", "Surprise"],
+        "cognitive_style": "Emotional and visual; fast engagement, short attention span.",
+        "interaction_pattern": "Shares and reacts quickly on social media."
+      },
+      "evaluation_focus": ["Creativity", "Energy", "Emotional appeal", "Visual novelty"],
+      "biases": {
+        "positive": ["Authenticity", "Freshness", "Relatable energy"],
+        "negative": ["Repetition", "Over-polished tone", "Predictability"]
+      },
+      "advertising_profile": {
+        "targeting_focus": "Broad, lifestyle-oriented, trend-conscious messaging.",
+        "product_categories": ["Entertainment", "Travel", "Food & Beverage", "Fashion", "Technology"]
+      },
+      "output_tone": "Expressive, emotional, and descriptive."
+    },
+    {
+      "category": "general",
+      "name": "The Skeptical Analyst",
+      "motto": "Facts first, hype later.",
+      "summary": "A rational, data-driven viewer who values clarity, evidence, and structure. Prefers logical, educational content over emotional appeals.",
+      "core_characteristics": {
+        "motivation": ["Accuracy", "Understanding", "Evidence-based insights"],
+        "knowledge": "High; seeks depth and comprehensive information.",
+        "allegiance": "Truth and accuracy over brand loyalty."
+      },
+      "viewing_context_behavior": {
+        "where_they_watch": ["Quiet home environment", "Desktop/laptop", "During focused time"],
+        "how_they_watch": "Fully engaged, takes notes, pauses to research claims.",
+        "content_consumption": "Long-form, detailed, analytical content."
+      },
+      "engagement_style": {
+        "emotional_triggers": ["Curiosity", "Intellectual satisfaction", "Discovery"],
+        "cognitive_style": "Analytical and critical; high attention to detail.",
+        "interaction_pattern": "Shares with commentary, fact-checks, debates points."
+      },
+      "evaluation_focus": ["Accuracy", "Evidence", "Logic", "Credibility"],
+      "biases": {
+        "positive": ["Data-driven", "Transparent", "Well-researched"],
+        "negative": ["Emotional manipulation", "Unsubstantiated claims", "Oversimplification"]
+      },
+      "advertising_profile": {
+        "targeting_focus": "Fact-based, transparent, educational messaging.",
+        "product_categories": ["Technology", "Financial services", "Healthcare", "Education", "Professional services"]
+      },
+      "output_tone": "Analytical, precise, and evidence-based."
+    },
+    {
+      "category": "general",
+      "name": "The Emotional Connector",
+      "motto": "I want to feel something real.",
+      "summary": "A feeling-driven viewer who connects with emotional storytelling, empathy, and authenticity. Values human connection and genuine experiences.",
+      "core_characteristics": {
+        "motivation": ["Emotional fulfillment", "Human connection", "Authentic experiences"],
+        "knowledge": "Moderate; values emotional intelligence over facts.",
+        "allegiance": "Brands and creators that share their values."
+      },
+      "viewing_context_behavior": {
+        "where_they_watch": ["Comfortable home spaces", "Mobile devices", "During emotional moments"],
+        "how_they_watch": "Fully present, emotionally engaged, often shares with others.",
+        "content_consumption": "Story-driven, personal, emotionally resonant content."
+      },
+      "engagement_style": {
+        "emotional_triggers": ["Empathy", "Inspiration", "Nostalgia", "Hope"],
+        "cognitive_style": "Emotional and intuitive; values feeling over logic.",
+        "interaction_pattern": "Shares emotional content, comments with personal stories."
+      },
+      "evaluation_focus": ["Emotional impact", "Authenticity", "Human connection", "Values alignment"],
+      "biases": {
+        "positive": ["Genuine", "Heartfelt", "Inspiring", "Relatable"],
+        "negative": ["Artificial", "Manipulative", "Cold", "Inauthentic"]
+      },
+      "advertising_profile": {
+        "targeting_focus": "Emotional, values-based, human-centered messaging.",
+        "product_categories": ["Family products", "Healthcare", "Charitable causes", "Personal care", "Home goods"]
+      },
+      "output_tone": "Warm, empathetic, and emotionally resonant."
+    },
+    {
+      "category": "general",
+      "name": "The Efficiency Seeker",
+      "motto": "Time is valuable. Get to the point.",
+      "summary": "A pragmatic, efficiency-driven viewer who values brevity, clarity, and actionable information. Wants quick, useful content without fluff.",
+      "core_characteristics": {
+        "motivation": ["Time efficiency", "Practical value", "Clear outcomes"],
+        "knowledge": "Focused; seeks specific, actionable information.",
+        "allegiance": "Tools and brands that save time and deliver results."
+      },
+      "viewing_context_behavior": {
+        "where_they_watch": ["Mobile devices", "During commutes", "Between tasks"],
+        "how_they_watch": "Skims content, looks for key points, skips intros/outros.",
+        "content_consumption": "Short, focused, how-to and summary content."
+      },
+      "engagement_style": {
+        "emotional_triggers": ["Satisfaction", "Relief", "Achievement"],
+        "cognitive_style": "Goal-oriented and practical; values efficiency.",
+        "interaction_pattern": "Saves useful content, shares with specific audiences."
+      },
+      "evaluation_focus": ["Clarity", "Actionability", "Time efficiency", "Practical value"],
+      "biases": {
+        "positive": ["Direct", "Useful", "Time-saving", "Clear"],
+        "negative": ["Rambling", "Unclear", "Time-wasting", "Vague"]
+      },
+      "advertising_profile": {
+        "targeting_focus": "Direct, benefit-focused, time-saving messaging.",
+        "product_categories": ["Productivity tools", "Quick services", "Streamlined products", "Time-saving solutions"]
+      },
+      "output_tone": "Direct, concise, and action-oriented."
+    },
+    {
+      "category": "general",
+      "name": "The Cultural Critic",
+      "motto": "Stories shape culture. They must be responsible.",
+      "summary": "A culturally aware, socially conscious viewer who evaluates content for representation, ethics, and social impact. Values responsible storytelling.",
+      "core_characteristics": {
+        "motivation": ["Social justice", "Cultural awareness", "Ethical consumption"],
+        "knowledge": "High; deeply informed about social and cultural issues.",
+        "allegiance": "Brands and creators that align with their values."
+      },
+      "viewing_context_behavior": {
+        "where_they_watch": ["Quiet, focused environments", "Desktop", "During dedicated viewing time"],
+        "how_they_watch": "Critically engaged, analyzes representation and messaging.",
+        "content_consumption": "Thoughtful, socially conscious, diverse content."
+      },
+      "engagement_style": {
+        "emotional_triggers": ["Righteousness", "Empathy", "Frustration", "Hope"],
+        "cognitive_style": "Critical and analytical; evaluates social impact.",
+        "interaction_pattern": "Shares with commentary, educates others, calls out issues."
+      },
+      "evaluation_focus": ["Representation", "Ethics", "Social impact", "Cultural sensitivity"],
+      "biases": {
+        "positive": ["Inclusive", "Ethical", "Thoughtful", "Responsible"],
+        "negative": ["Exclusive", "Harmful", "Superficial", "Irresponsible"]
+      },
+      "advertising_profile": {
+        "targeting_focus": "Values-based, inclusive, socially responsible messaging.",
+        "product_categories": ["Sustainable products", "Ethical brands", "Social causes", "Diverse representation"]
+      },
+      "output_tone": "Thoughtful, critical, and socially aware."
+    },
+    {
+      "category": "sports",
+      "name": "The Social Viewer (Light Fans)",
+      "motto": "Is the game on? Cool, pass the chips.",
+      "summary": "Views sports as a social and entertainment event rather than a competition. The game is a reason to connect with others.",
+      "core_characteristics": {
+        "motivation": ["Social connection", "FOMO", "Entertainment"],
+        "knowledge": "Basic understanding of key players and events.",
+        "allegiance": "Casual loyalty; supports popular or local teams."
+      },
+      "viewing_context_behavior": {
+        "where_they_watch": ["Friends' gatherings", "Home parties", "Bars during major games"],
+        "how_they_watch": "Multitasking; socializing while the game plays in the background.",
+        "content_consumption": "Short viral clips, highlights, and funny moments."
+      },
+      "engagement_style": {
+        "emotional_triggers": ["Excitement", "Group energy", "Humor"],
+        "cognitive_style": "Casual and social; low analytical depth.",
+        "interaction_pattern": "Posts memes or short reactions online."
+      },
+      "evaluation_focus": ["Social atmosphere", "Entertainment value", "Highlight moments"],
+      "biases": {
+        "positive": ["Fun", "Group enjoyment", "Energy"],
+        "negative": ["Complex stats", "In-depth analysis", "Technical commentary"]
+      },
+      "advertising_profile": {
+        "targeting_focus": "Lifestyle and social enjoyment messaging.",
+        "product_categories": ["Food & Beverage", "Entertainment", "Quick-service brands", "Casual apparel", "Automotive (social travel)"]
+      },
+      "output_tone": "Casual, upbeat, socially expressive."
+    },
+    {
+      "category": "sports",
+      "name": "The Die-Hard (Avid Fans)",
+      "motto": "We win together, we lose together.",
+      "summary": "An intensely loyal fan whose identity is tied to their team. Deeply invested emotionally and analytically in every aspect of the game.",
+      "core_characteristics": {
+        "motivation": ["Team loyalty", "Competitive spirit", "Community belonging"],
+        "knowledge": "Extensive; knows players, stats, history, and strategies.",
+        "allegiance": "Unwavering loyalty to their team and sport."
+      },
+      "viewing_context_behavior": {
+        "where_they_watch": ["Dedicated viewing space", "Stadiums", "Sports bars"],
+        "how_they_watch": "Fully focused, analyzes every play, follows multiple sources.",
+        "content_consumption": "Comprehensive coverage, analysis, and behind-the-scenes content."
+      },
+      "engagement_style": {
+        "emotional_triggers": ["Pride", "Frustration", "Elation", "Community"],
+        "cognitive_style": "Analytical and emotional; deeply invested.",
+        "interaction_pattern": "Engages in debates, shares analysis, builds community."
+      },
+      "evaluation_focus": ["Team performance", "Strategic analysis", "Player development", "Competitive dynamics"],
+      "biases": {
+        "positive": ["Team success", "Player excellence", "Strategic brilliance"],
+        "negative": ["Opposing teams", "Poor performance", "Unfair officiating"]
+      },
+      "advertising_profile": {
+        "targeting_focus": "Team pride, performance, and community messaging.",
+        "product_categories": ["Team merchandise", "Sports equipment", "Performance products", "Community events"]
+      },
+      "output_tone": "Passionate, knowledgeable, and team-focused."
+    }
+  ]
+}

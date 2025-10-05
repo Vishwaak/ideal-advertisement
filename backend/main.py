@@ -1,5 +1,12 @@
 import os
+import json
+import tempfile
+from typing import Optional, Dict, Any
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException, status
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from persona_analyzer import PersonaAnalyzer
 
 from twelvelabs import TwelveLabs
 from twelvelabs.indexes import IndexesCreateRequestModelsItem
