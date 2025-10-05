@@ -15,7 +15,7 @@ class OutputData(BaseModel):
 
 
 @app.post("/ad_placement", response_model=OutputData)
-async def upload_video(file: UploadFile = File(None), video_id: str = ""):
+async def upload_video(file: UploadFile = File(None), video_id: str = "" , analysis_type: str = "emotion"):
     # Mock function to simulate video processing
     def process_video(file: UploadFile) -> List[dict]:
         # Replace this with actual video processing logic
@@ -34,6 +34,13 @@ async def upload_video(file: UploadFile = File(None), video_id: str = ""):
         return {"result": result}
 
     elif video_id:
+        if analysis_type == "emotion":
+            prompt = "chapterize the video for emotion timeline and time stamp it based on the video"
+        elif analysis_type == "scene":
+            prompt = "What are the key frame timestamps of the video?"
+        else:
+            prompt = "chapterize the video for emotion timeline and time stamp it based on the video"
+            
         result = context_engine.call_pegasus(
             video_id,
             "chapterize the video for emotion timeline and time stamp it based on the video",
@@ -46,4 +53,4 @@ async def upload_video(file: UploadFile = File(None), video_id: str = ""):
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the FastAPI model API!"}
+    return {"message": "Welcome to advertisment placement API"}
