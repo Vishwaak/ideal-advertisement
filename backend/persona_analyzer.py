@@ -35,7 +35,7 @@ class PersonaAnalyzer:
     def _load_personas(self) -> List[Dict[str, Any]]:
         """Load persona definitions from JSON file"""
         try:
-            with open("persona_categories.json", 'r', encoding='utf-8') as f:
+            with open("json/persona_categories.json", 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 return data.get('personas', [])
         except FileNotFoundError:

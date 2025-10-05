@@ -10,6 +10,7 @@ from twelvelabs.tasks import TasksRetrieveResponse
 from persona_analyzer import *
 
 import matplotlib.pyplot as plt
+from google import genai
 
 import requests
 
@@ -31,7 +32,7 @@ class Context_engine:
         self.logging()
         self.logger.info("Context engine initialized.")
 
-        # self.gemini_client = genai.Client(api_key=os.getenv("gemini_API"))
+        self.gemini_client = genai.Client(api_key=os.getenv("gemini_API"))
         self.logger.info("Gemini client initialized.")
 
         self.persona_analyzer = PersonaAnalyzer()

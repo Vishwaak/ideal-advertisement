@@ -107,55 +107,76 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
     };
 
     const getVideoAnalysis = async (videoid) => {
+
+        const url = `http://127.0.0.1:8000/ad_placement?video_id=${videoid}`;
+        // Use multipart/form-data for the payload
+        const options = {
+            method: 'POST'};
+
         try {
-            // For now, always use example.json as mock data
-            const response = await fetch('example.json');
-            
+            const response = await fetch(url, options);
+            const data = await response.json();
             if (!response.ok) {
-                throw new Error(`Failed to fetch example data: ${response.status}`);
+                throw new Error(data.message || `HTTP error! status: ${response.status}`);
             }
-            
-            const exampleData = await response.json();
-            
-            // Transform the example data to match the expected format
-            const transformedData = {
-                title: "Barkley's Amazing Run - NFL Highlight",
-                summary: "A spectacular NFL play featuring Saquon Barkley's impressive run and touchdown celebration, followed by detailed replay analysis.",
-                keywords: ["NFL", "football", "touchdown", "celebration", "sports", "highlight", "Barkley", "Eagles"],
-                segments: exampleData.result.emotion.timestamps.map((timestamp, index) => {
-                    // Parse the time range like "0s (00:00) - 3s (00:04)"
-                    const timeRange = timestamp.time;
-                    const [startTimeStr, endTimeStr] = timeRange.split(' - ');
-                    
-                    return {
-                        start_time: parseTimeToSeconds(startTimeStr),
-                        end_time: parseTimeToSeconds(endTimeStr),
-                        description: timestamp.description
-                    };
-                }),
-                emotion_analysis: exampleData.result.emotion,
-                ad_placement: exampleData.result.ad_placement_report,
-                video_id: videoid || 'demo_video_123'
-            };
-            
-            console.log('Using example data for video analysis:', transformedData);
-            return transformedData;
+            setApiResponse(data);
+            setApiError(null);
+            return data;
         } catch (error) {
-            console.error('Failed to load example data:', error);
-            // Fallback to basic structure
-            return {
-                title: "Demo Video Analysis",
-                summary: "Sample video analysis for demonstration purposes",
-                keywords: ["demo", "sample", "video"],
-                segments: [
-                    { start_time: 0, end_time: 10, description: "Opening segment" },
-                    { start_time: 10, end_time: 20, description: "Main content" },
-                    { start_time: 20, end_time: 30, description: "Closing segment" }
-                ],
-                video_id: videoid || 'demo_video_123'
-            };
-        }
-    };
+            console.error('Failed to get video analysis:', error);
+            setApiError(error.message);
+            setApiResponse(null);
+            throw error;
+        }}
+        // try {
+        //     // For now, always use example.json as mock data
+        //     const response = await fetch('/example.json');
+            
+        //     if (!response.ok) {
+        //         throw new Error(`Failed to fetch example data: ${response.status}`);
+        //     }
+            
+        //     const exampleData = await response.json();
+            
+        //     // Transform the example data to match the expected format
+        //     const transformedData = {
+        //         title: "Barkley's Amazing Run - NFL Highlight",
+        //         summary: "A spectacular NFL play featuring Saquon Barkley's impressive run and touchdown celebration, followed by detailed replay analysis.",
+        //         keywords: ["NFL", "football", "touchdown", "celebration", "sports", "highlight", "Barkley", "Eagles"],
+        //         segments: exampleData.result.emotion.timestamps.map((timestamp, index) => {
+        //             // Parse the time range like "0s (00:00) - 3s (00:04)"
+        //             const timeRange = timestamp.time;
+        //             const [startTimeStr, endTimeStr] = timeRange.split(' - ');
+                    
+        //             return {
+        //                 start_time: parseTimeToSeconds(startTimeStr),
+        //                 end_time: parseTimeToSeconds(endTimeStr),
+        //                 description: timestamp.description
+        //             };
+        //         }),
+        //         emotion_analysis: exampleData.result.emotion,
+        //         ad_placement: exampleData.result.ad_placement_report,
+        //         video_id: videoid || 'demo_video_123'
+        //     };
+            
+        //     console.log('Using example data for video analysis:', transformedData);
+        //     return transformedData;
+        // } catch (error) {
+        //     console.error('Failed to load example data:', error);
+        //     // Fallback to basic structure
+        //     return {
+        //         title: "Demo Video Analysis",
+        //         summary: "Sample video analysis for demonstration purposes",
+        //         keywords: ["demo", "sample", "video"],
+        //         segments: [
+        //             { start_time: 0, end_time: 10, description: "Opening segment" },
+        //             { start_time: 10, end_time: 20, description: "Main content" },
+        //             { start_time: 20, end_time: 30, description: "Closing segment" }
+        //         ],
+        //         video_id: videoid || 'demo_video_123'
+        //     };
+        // }
+
 
     const onDrop = useCallback(async (acceptedFiles) => {
         const file = acceptedFiles[0];
