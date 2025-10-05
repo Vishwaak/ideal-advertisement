@@ -245,6 +245,64 @@ class EmbeddingSimilarityAnalyzer:
                 comprehensive_scores[ad_name]["sports_context_scores"] = sports_similarities[ad_name]["context_scores"]
         
         return comprehensive_scores
+    
+    def _get_product_name(self, ad_name: str) -> str:
+        """Extract product name from persona analysis content"""
+        # Get the content overviews for this ad
+        content_overviews = self._extract_content_overviews()
+        
+        if ad_name not in content_overviews:
+            return "Unknown Product"
+        
+        ad_content = content_overviews[ad_name].lower()
+        
+        # Define product keywords to look for
+        product_keywords = {
+            "beverage": ["drink", "beverage", "soda", "cola", "coke", "pepsi", "juice", "water", "thirst", "refreshment"],
+            "automotive": ["car", "vehicle", "automobile", "drive", "driving", "volkswagen", "bmw", "mercedes", "toyota", "honda"],
+            "personal_care": ["shampoo", "soap", "toothpaste", "deodorant", "skincare", "beauty", "hygiene", "grooming", "clean", "fresh"],
+            "food": ["food", "snack", "meal", "eat", "hungry", "taste", "flavor", "nutrition"],
+            "electronics": ["phone", "computer", "laptop", "tablet", "device", "technology", "digital"],
+            "clothing": ["clothes", "shirt", "pants", "dress", "fashion", "apparel", "wear"],
+            "sports": ["sports", "athletic", "fitness", "training", "equipment", "gear", "nike", "adidas"]
+        }
+        
+        # Count keyword matches for each product category
+        category_scores = {}
+        for category, keywords in product_keywords.items():
+            score = sum(1 for keyword in keywords if keyword in ad_content)
+            if score > 0:
+                category_scores[category] = score
+        
+        # Return the category with the highest score
+        if category_scores:
+            best_category = max(category_scores, key=category_scores.get)
+            return self._format_product_name(best_category, ad_name)
+        
+        # Fallback to generic naming
+        return f"{ad_name} Products"
+    
+    def _format_product_name(self, category: str, ad_name: str) -> str:
+        """Format the product name based on category and ad name"""
+        category_names = {
+            "beverage": "Beverages",
+            "automotive": "Automotive Products", 
+            "personal_care": "Personal Care Products",
+            "food": "Food Products",
+            "electronics": "Electronics",
+            "clothing": "Clothing & Apparel",
+            "sports": "Sports & Fitness Products"
+        }
+        
+        # Try to extract brand name from ad name
+        if "coca" in ad_name.lower() or "cola" in ad_name.lower():
+            return "Coca-Cola Beverages"
+        elif "volkswagen" in ad_name.lower() or "vw" in ad_name.lower():
+            return "Volkswagen Cars"
+        elif "pg" in ad_name.lower():
+            return "PG Personal Care Products"
+        else:
+            return category_names.get(category, f"{ad_name} Products")
 
     def generate_analysis_report(self) -> Dict[str, Any]:
         """Generate comprehensive analysis report"""
@@ -313,8 +371,8 @@ class EmbeddingSimilarityAnalyzer:
             "sports_contextual_similarities": sports_similarities,
             "persona_affinity_scores": affinity_scores,
             "comprehensive_scores": comprehensive_scores,
-            "final_ranking": [{"rank": i, "ad": name, "score": data["comprehensive_score"]} 
-                            for i, (name, data) in enumerate(sorted_comprehensive, 1)] if comprehensive_scores else []
+            "final_score": [{"ad": name, "score": data["comprehensive_score"], "product": self._get_product_name(name)} 
+                           for name, data in sorted_comprehensive] if comprehensive_scores else []
         }
         
         return report

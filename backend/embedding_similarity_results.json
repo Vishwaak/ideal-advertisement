@@ -200,21 +200,21 @@
       }
     }
   },
-  "final_ranking": [
+  "final_score": [
     {
-      "rank": 1,
       "ad": "PG Ad",
-      "score": 0.9955
+      "score": 0.9955,
+      "product": "PG Personal Care Products"
     },
     {
-      "rank": 2,
       "ad": "Volkswagen Ad",
-      "score": 0.5295
+      "score": 0.5295,
+      "product": "Volkswagen Cars"
     },
     {
-      "rank": 3,
       "ad": "Coca-Cola Ad 3",
-      "score": 0.4645
+      "score": 0.4645,
+      "product": "Coca-Cola Beverages"
     }
   ]
 }
