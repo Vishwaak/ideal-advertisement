@@ -85,38 +85,77 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
         }
     };
 
-    const getVideoAnalysis = async (videoid) => {
-        const url = `http://127.0.0.1:8000/ad_placement?video_id=${videoid}`;
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        try {
-            console.log('Making request to:', url);
-            console.log('Video ID:', videoid);
-            const response = await fetch(url, options);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            console.log('Analysis response:', data);
-            return data;
-        } catch (error) {
-            console.error("Video analysis failed:", error);
-            throw error;
+    // Helper function to parse time strings like "0s (00:00)" to seconds
+    const parseTimeToSeconds = (timeStr) => {
+        if (!timeStr) return 0;
+        
+        // Handle formats like "0s (00:00)" or "3s (00:05)" or "4s (00:13)"
+        const secondsMatch = timeStr.match(/(\d+)s/);
+        if (secondsMatch) {
+            return parseInt(secondsMatch[1]);
         }
+        
+        // Handle MM:SS format like "00:00" or "00:05"
+        const timeMatch = timeStr.match(/(\d+):(\d+)/);
+        if (timeMatch) {
+            const minutes = parseInt(timeMatch[1]);
+            const seconds = parseInt(timeMatch[2]);
+            return minutes * 60 + seconds;
+        }
+        
+        return 0;
     };
 
-    // dummmy data segments: [
-        // { start_time: 0, end_time: 3, description: "hits a goal" },
-       // { start_time: 3, end_time: 4, description: "goal celebration" },
-       // { start_time: 4, end_time: 8, description: "celebration" }
-    //]
+    const getVideoAnalysis = async (videoid) => {
+        try {
+            // For now, always use example.json as mock data
+            const response = await fetch('example.json');
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch example data: ${response.status}`);
+            }
+            
+            const exampleData = await response.json();
+            
+            // Transform the example data to match the expected format
+            const transformedData = {
+                title: "Barkley's Amazing Run - NFL Highlight",
+                summary: "A spectacular NFL play featuring Saquon Barkley's impressive run and touchdown celebration, followed by detailed replay analysis.",
+                keywords: ["NFL", "football", "touchdown", "celebration", "sports", "highlight", "Barkley", "Eagles"],
+                segments: exampleData.result.emotion.timestamps.map((timestamp, index) => {
+                    // Parse the time range like "0s (00:00) - 3s (00:04)"
+                    const timeRange = timestamp.time;
+                    const [startTimeStr, endTimeStr] = timeRange.split(' - ');
+                    
+                    return {
+                        start_time: parseTimeToSeconds(startTimeStr),
+                        end_time: parseTimeToSeconds(endTimeStr),
+                        description: timestamp.description
+                    };
+                }),
+                emotion_analysis: exampleData.result.emotion,
+                ad_placement: exampleData.result.ad_placement_report,
+                video_id: videoid || 'demo_video_123'
+            };
+            
+            console.log('Using example data for video analysis:', transformedData);
+            return transformedData;
+        } catch (error) {
+            console.error('Failed to load example data:', error);
+            // Fallback to basic structure
+            return {
+                title: "Demo Video Analysis",
+                summary: "Sample video analysis for demonstration purposes",
+                keywords: ["demo", "sample", "video"],
+                segments: [
+                    { start_time: 0, end_time: 10, description: "Opening segment" },
+                    { start_time: 10, end_time: 20, description: "Main content" },
+                    { start_time: 20, end_time: 30, description: "Closing segment" }
+                ],
+                video_id: videoid || 'demo_video_123'
+            };
+        }
+    };
 
     const onDrop = useCallback(async (acceptedFiles) => {
         const file = acceptedFiles[0];
@@ -321,7 +360,9 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
                 description: segment.description || `Segment ${index + 1}`,
                 selected: false,
                 type: 'analysis',
-                isAd: false
+                isAd: false,
+                emotion: segment.emotion || null,
+                confidence: segment.confidence || null
             }));
             newSegments = [...newSegments, ...analysisSegments];
         } else if (duration > 0) {
@@ -1111,9 +1152,16 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
                                         <div className="flex items-center justify-between mb-2">
                                             <div className="flex items-center space-x-2">
                                                 {segment.isAd && <span className="text-green-600 text-sm">📺</span>}
-                                                <span className="text-sm font-medium text-gray-900">
-                                                    {segment.description || `Segment ${segment.id + 1}`}
-                                                </span>
+                                                <div className="flex flex-col">
+                                                    <span className="text-sm font-medium text-gray-900">
+                                                        {segment.description || `Segment ${segment.id + 1}`}
+                                                    </span>
+                                                    {segment.type === 'analysis' && (
+                                                        <span className="text-xs text-blue-600">
+                                                            🎯 AI-Generated Segment
+                                                        </span>
+                                                    )}
+                                                </div>
                                                 {segment.isAd && segment.draggable && (
                                                     <span className="text-xs text-gray-400 cursor-move" title="Drag to reorder">
                                                         ⋮⋮
@@ -1178,9 +1226,38 @@ export default function UploadVideoTab({ uploadedAds = [] }) {
                                                 )}
                                             </div>
                                         ) : (
-                                            <div className="text-xs text-gray-600 mb-3">
-                                                {formatTime(segment.start)} - {formatTime(segment.end)}
-                                                <span className="ml-2">({formatTime(segment.duration)})</span>
+                                            <div className="space-y-2">
+                                                <div className="text-xs text-gray-600">
+                                                    {formatTime(segment.start)} - {formatTime(segment.end)}
+                                                    <span className="ml-2">({formatTime(segment.duration)})</span>
+                                                </div>
+                                                {segment.emotion && (
+                                                    <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                                                        🎭 {segment.emotion}
+                                                    </div>
+                                                )}
+                                                {segment.confidence && (
+                                                    <div className="flex items-center space-x-2">
+                                                        <span className="text-xs text-gray-500">Analysis Confidence:</span>
+                                                        <div className="flex items-center space-x-1">
+                                                            <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                                                                <div 
+                                                                    className={`h-1.5 rounded-full ${
+                                                                        segment.confidence >= 90 
+                                                                            ? 'bg-green-500' 
+                                                                            : segment.confidence >= 70 
+                                                                                ? 'bg-yellow-500' 
+                                                                                : 'bg-red-500'
+                                                                    }`}
+                                                                    style={{ width: `${segment.confidence}%` }}
+                                                                ></div>
+                                                            </div>
+                                                            <span className="text-xs font-medium text-gray-700">
+                                                                {segment.confidence}%
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         )}
                                         

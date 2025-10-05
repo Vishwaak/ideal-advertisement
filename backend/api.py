@@ -8,6 +8,7 @@ import logging
 import uuid
 import time
 import os
+import json
 
 app = FastAPI()
 
@@ -70,6 +71,10 @@ class StitchingResponse(BaseModel):
 
 @app.post("/ad_placement", response_model=OutputData)
 async def upload_video(file: UploadFile = File(None), video_id: str = ""):
+    with open("dummy.json", "r") as f:
+        data = json.load(f)
+        
+    return data
     """
     Endpoint for video analysis and ad placement
     Can accept either a file upload or a video_id for analysis
